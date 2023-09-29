@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1= title
+  form(action="" method="POST")
+    div.form-group
+      label(for="firstname") First Name:
+      div
+        input(name="firstname" type="text" value=(undefined===user ? '' : user.first_name)) 
+    div.form-group
+      label(for="lastname") Last Name:
+      div
+        input(name="lastname" type="text" value=(undefined===user ? '' : user.last_name)) 
+    div.form-group
+      label(for="email") Email:
+      div
+        input(name="email" type="email" value=(undefined===user ? '' : user.email)) 
+    div.form-group
+      label(for="password") Password:
+      div
+        input(name="password" type="password" value=(undefined===user ? '' : user.password))
+    div.form-group
+      label(for="match-password") Confrim Password:
+      div
+        input(name="match-password" type="password")
+    button Sign Up
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+
