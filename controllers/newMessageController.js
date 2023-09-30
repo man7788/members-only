@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 exports.post_message = [
   // Validate and sanitize fields.
-  body("title", "Ttiel must not be empty.")
+  body("title", "Title must not be empty.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
