@@ -5,6 +5,7 @@ const Message = require("../models/message");
 const sign_up_controller = require("../controllers/signUpController");
 const verification_controller = require("../controllers/verificationController");
 const new_message_controller = require("../controllers/newMessageController");
+const admin_controller = require("../controllers/adminController");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
@@ -56,5 +57,24 @@ router.get("/new-message", function (req, res, next) {
 });
 
 router.post("/new-message", new_message_controller.post_message);
+
+//Admin Verification
+router.get("/admin", function (req, res, next) {
+  if (res.locals.currentUser) {
+    const user = res.locals.currentUser;
+    if (user.membership === "active") {
+      res.render("admin", { title: "Admin Verification" });
+    } else {
+      res.redirect("/");
+    }
+  } else {
+    res.redirect("/");
+  }
+});
+
+router.post("/admin", admin_controller.submit_verification);
+
+//Delete Message
+router.post("/delete", admin_controller.delete_message);
 
 module.exports = router;

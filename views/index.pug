@@ -7,8 +7,25 @@ block content
     if locals.currentUser.membership === 'inactive'
       p Membersip status: Inactive
       p Activate your membersip #[a(href="/verification") here].
-    else
+    else if locals.currentUser.admin === true
+      p Membersip status: Admin
+      a(href="/new-message") Create New Message
+      div.messages
+        br
+        for message in messages
+          div.message-box
+            p Title: #{message.title}
+            p Author: #{message.author.fullname}
+            p Message:
+              p #{message.message}
+            p Date: #{message.date_formatted}
+            form(method='POST' action='/delete')
+              div.form-group
+                input(type='hidden', name='message' value=message._id)
+              button.btn.btn-primary(type='submit') Delete
+    else if locals.currentUser.membership === 'active'
       p Membersip status: Active
+      p Verify as admin #[a(href="/admin") here].
       a(href="/new-message") Create New Message
       div.messages
         br
@@ -29,18 +46,16 @@ block content
           p Title: #{message.title}
           p Message: 
             p #{message.message}
-    p test3@test4.com 
-    p test88@test88.com 
-    p dllm0044
+
     form(action="/log-in" method="POST")
       div.form-group
         label(for="username") Email:
         div
-          input(name="username" type="text" value="test3@test4.com") 
+          input(name="username" type="text") 
       div.form-group
         label(for="password") Password:
         div
-          input(name="password" type="password" value="dllm0044") 
+          input(name="password" type="password")
       button Log In
     if fail
       p=fail
