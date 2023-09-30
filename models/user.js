@@ -13,6 +13,7 @@ const UserSchema = new Schema({
     enum: ["active", "inactive"],
     default: "inactive",
   },
+  admin: { type: Boolean },
 });
 
 // // Virtual for user's URL

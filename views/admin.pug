@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+    h3 Your email: #{locals.currentUser.email}
+    p Enter verification code to verify as an admin.
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
+    form(action="" method="POST")
+      div.form-group
+        div
+          input(name="admin" type="text") 
+      button Verify
