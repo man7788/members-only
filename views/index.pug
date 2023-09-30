@@ -9,11 +9,15 @@ block content
       p Activate your membersip #[a(href="/verification") here].
     else
       p Membersip status: Active
+      a(href="/new-message") Create New Message
+      div
+        br
     a(href="/log-out") Log Out
   else
     p Welcome to #{title}!
     p Login to view members only messages.
     p test3@test4.com 
+    p test88@test88.com 
     p dllm0044
     form(action="/log-in" method="POST")
       div.form-group

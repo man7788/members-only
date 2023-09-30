@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  form(action="" method="POST")
+    div.form-group
+      label(for="title") Title:
+      div
+        input.msg-title(name="title" type="text" value=(undefined===user ? '' : user.first_name)) 
+    div.form-group
+      label(for="message") Message:
+      div
+        textarea(name="message" type="text" cols="35" rows="10" value=(undefined===user ? '' : user.last_name)) 
+    button Post
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+
