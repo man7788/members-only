@@ -8,8 +8,7 @@ const new_message_controller = require("../controllers/newMessageController");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
-  const messages = await Message.find({}, "title message");
-  console.log(messages);
+  const messages = await Message.find({}).populate("author");
 
   res.render("index", {
     title: "Exclusive Clubhouse",

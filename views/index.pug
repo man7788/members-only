@@ -10,8 +10,15 @@ block content
     else
       p Membersip status: Active
       a(href="/new-message") Create New Message
-      div
+      div.messages
         br
+        for message in messages
+          div.message-box
+            p Title: #{message.title}
+            p Author: #{message.author.fullname}
+            p Message:
+              p #{message.message}
+            p Date: #{message.date_formatted}
     a(href="/log-out") Log Out
   else
     p Welcome to #{title}!
@@ -33,7 +40,7 @@ block content
       div.form-group
         label(for="password") Password:
         div
-          input(name="password" type="text" value="dllm0044") 
+          input(name="password" type="password" value="dllm0044") 
       button Log In
     if fail
       p=fail
