@@ -2,6 +2,29 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}!
-  p #[a(href="") Login] to view members only messages.
-  p #[a(href="/sign_up") Sign up] here.
+  if locals.currentUser
+    h3 Welcome Back! #{locals.currentUser.email}
+    if locals.currentUser.membership === 'inactive'
+      p Membersip status: Inactive
+      p Activate your membersip #[a(href="/verification") here].
+    else
+      p Membersip status: Active
+    a(href="/log-out") Log Out
+  else
+    p Welcome to #{title}!
+    p Login to view members only messages.
+    p test3@test4.com 
+    p dllm0044
+    form(action="/log-in" method="POST")
+      div.form-group
+        label(for="username") Email:
+        div
+          input(name="username" type="text" value="test3@test4.com") 
+      div.form-group
+        label(for="password") Password:
+        div
+          input(name="password" type="text" value="dllm0044") 
+      button Log In
+    if fail
+      p=fail
+    p #[a(href="/sign-up") Sign up] here.

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+    h3 Your email: #{locals.currentUser.email}
+    p Enter verification code to activate your membersip.
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
+    form(action="" method="POST")
+      div.form-group
+        div
+          input(name="verification" type="text") 
+      button Verify
+    
