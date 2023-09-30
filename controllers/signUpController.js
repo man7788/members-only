@@ -55,7 +55,7 @@ exports.submit_form = [
         bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
           user.password = hashedPassword;
           await user.save();
-          res.redirect("/sign-up");
+          res.redirect("/");
         })
       );
     }
