@@ -45,7 +45,7 @@ exports.submit_form = [
 
     if (!errors.isEmpty()) {
       // There are errors. Render form again with sanitized values/error messages.
-      res.render("sign_up", {
+      res.render("sign-up", {
         user: user,
         errors: errors.array(),
       });
@@ -55,7 +55,7 @@ exports.submit_form = [
         bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
           user.password = hashedPassword;
           await user.save();
-          res.redirect("/sign_up");
+          res.redirect("/sign-up");
         })
       );
     }
