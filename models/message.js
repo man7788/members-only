@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
-  titel: { type: String, required: true, minLength: 1, maxLength: 100 },
+  title: { type: String, required: true, minLength: 1, maxLength: 100 },
   message: { type: String, required: true, minLength: 1, maxLength: 1000 },
   date: { type: Date, default: Date.now },
   author: { type: Schema.Types.ObjectId, ref: "user", required: true },
