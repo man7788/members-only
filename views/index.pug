@@ -15,7 +15,13 @@ block content
     a(href="/log-out") Log Out
   else
     p Welcome to #{title}!
-    p Login to view members only messages.
+    p Login to view members only content.
+    div.messages
+      for message in messages
+        div.message-box
+          p Title: #{message.title}
+          p Message: 
+            p #{message.message}
     p test3@test4.com 
     p test88@test88.com 
     p dllm0044

@@ -1,15 +1,20 @@
 const express = require("express");
 const router = express.Router();
+const Message = require("../models/message");
 
 const sign_up_controller = require("../controllers/signUpController");
 const verification_controller = require("../controllers/verificationController");
 const new_message_controller = require("../controllers/newMessageController");
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/", async function (req, res, next) {
+  const messages = await Message.find({}, "title message");
+  console.log(messages);
+
   res.render("index", {
     title: "Exclusive Clubhouse",
     user: res.locals.currentUser,
+    messages: messages,
     fail: req.flash("error"),
   });
 });
